@@ -1,0 +1,33 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe 生成活动文件",
+            "command": "D:/MinGW/mingw64/bin/g++.exe",
+            "args": [
+                "-g",
+                "${file}",
+                "E:\\PracticeWork\\ZipAltCmd\\CentralDirectory.cpp",
+                "E:\\PracticeWork\\ZipAltCmd\\LocalFileHeader.cpp",
+                "E:\\PracticeWork\\ZipAltCmd\\CentralDirectoryEnd.cpp",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-static-libgcc",
+                "-static-libstdc++"
+
+            ],
+            "options": {
+                "cwd": "D:/MinGW/mingw64/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "调试器生成的任务。"
+        }
+    ],
+    "version": "2.0.0"
+}
