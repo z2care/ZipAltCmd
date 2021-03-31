@@ -50,6 +50,8 @@ int main(int argc, char **argv){
     Byte startBuf[4];//zip marker size is 4 byte
     int cur_pos = 0;
     int cd_offset = 0;
+    int sig_offset = -1;
+    UInt64 sig_size = 0;
     while(infile.peek() != EOF){
         infile.read((char*)startBuf, sizeof(startBuf));
         UInt32 value = Get32(startBuf);
@@ -60,6 +62,14 @@ int main(int argc, char **argv){
         }else if(value == NSignature::kEcd){
             cd_offset = readCentralDirectoryEndRecord(infile, centralFileHeaders, cur_pos);
         }else{
+            infile.seekg(cur_pos-4, ios::beg);
+            sig_offset = infile.tellg();
+            Byte tmpBuf8[8];
+            infile.read((char*)tmpBuf8, sizeof(tmpBuf8));
+            sig_size = Get64(tmpBuf8);
+            infile.seekg(value, ios::cur);
+
+
             cout<<value<<endl;
             cout<< "No zip marker found.skiip 1006."<<endl;
             cur_pos = infile.tellg();
@@ -70,6 +80,12 @@ int main(int argc, char **argv){
 
     int exp_offset = 0;
     writeLocalFileHeaderRecord(infile, outfile, localFileHeaders, pickFiles);
+    if(sig_offset != -1){
+        char* sig_temp = new char[sig_size]{};//whatever store but never short than filename_len
+        infile.read((char *)sig_temp, sig_size);//read content in total size byte
+
+        outfile.write((const char *)sig_temp, sig_size);//write to target file
+    }
     writeCentralDirectoryRecord(infile, outfile, centralFileHeaders, localFileHeaders, pickFiles, cd_offset);
     infile.close();
     outfile.close();    

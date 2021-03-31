@@ -12,6 +12,9 @@ typedef unsigned int UInt32;
 #define GetUi32(p) (*(const UInt32 *)(const void *)(p))
 #define Get32(p) GetUi32(p)
 
+#define GetUi64(p) (*(const UInt64 *)(const void *)(p))
+#define Get64(p) GetUi64(p)
+
 #define SetUi32(p, v) { *(UInt32 *)(p) = (v); }
 #define Set32(p, d) SetUi32(p, d)
 

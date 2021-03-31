@@ -9,7 +9,7 @@ int readCentralDirectoryEndRecord(fstream& zipfile, vector<FileRecord>& centralF
     zipfile.seekg(12, ios::cur);
 
     zipfile.read((char *)&tmpBuf4, sizeof(tmpBuf4));
-    UInt16 cd_offset = Get32(tmpBuf4);
+    UInt32 cd_offset = Get32(tmpBuf4);
 
     zipfile.read((char *)&tmpBuf2, sizeof(tmpBuf2));
     UInt16 comment_len = Get16(tmpBuf2);
