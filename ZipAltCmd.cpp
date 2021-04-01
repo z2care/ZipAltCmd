@@ -64,15 +64,12 @@ int main(int argc, char **argv){
         }else{
             infile.seekg(cur_pos-4, ios::beg);
             sig_offset = infile.tellg();
-            Byte tmpBuf8[8];
-            infile.read((char*)tmpBuf8, sizeof(tmpBuf8));
-            sig_size = Get64(tmpBuf8);
-            infile.seekg(value, ios::cur);
+            cur_pos = readApkSigningBlock(infile);
 
+            sig_size = cur_pos - sig_offset;
 
             cout<<value<<endl;
             cout<< "No zip marker found.skiip 1006."<<endl;
-            cur_pos = infile.tellg();
             break;
         }
     }
@@ -81,10 +78,7 @@ int main(int argc, char **argv){
     int exp_offset = 0;
     writeLocalFileHeaderRecord(infile, outfile, localFileHeaders, pickFiles);
     if(sig_offset != -1){
-        char* sig_temp = new char[sig_size]{};//whatever store but never short than filename_len
-        infile.read((char *)sig_temp, sig_size);//read content in total size byte
-
-        outfile.write((const char *)sig_temp, sig_size);//write to target file
+        writeApkSigningBlock(infile, outfile, sig_size);
     }
     writeCentralDirectoryRecord(infile, outfile, centralFileHeaders, localFileHeaders, pickFiles, cd_offset);
     infile.close();
