@@ -12,7 +12,7 @@ vector<char*> pickFiles;
 void help(){
     cout<<"help:"<<endl;
     cout<<"ZipAltCmd.exe <in_zip> <out_zip> <list.txt>"<<endl;
-    cout<<"1. never suppport signed apk 2. list.txt without empty line"<<endl;
+    cout<<"1. list.txt without empty line 2. list.txt must put AndroidManifest.xml on top"<<endl;
 }
 
 int main(int argc, char **argv){
