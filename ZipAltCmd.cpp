@@ -40,7 +40,6 @@ int main(int argc, char **argv){
         return -1;
     }
 
-    //"E:\\PracticeWork\\ZipModify\\newtest.zip"
     fstream outfile(argv[2], ios::out | ios::binary);
     if(outfile.fail()){
         cout<<"can't open newzip file"<<endl;
