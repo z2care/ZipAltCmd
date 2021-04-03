@@ -1,5 +1,5 @@
 中文页 | [English](README.md)
-
+[![license](https://img.shields.io/github/license/z2care/ZipAltCmd)](https://raw.githubusercontent.com/z2care/ZipAltCmd/master/LICENSE)
 # ZipAltCmd
 这是一个改变zip包内部文件顺序的命令行工具。
 

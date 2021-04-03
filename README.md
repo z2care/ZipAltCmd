@@ -1,5 +1,5 @@
-[中文页](README_ZH.md) | English
-
+[中文页](README_CN.md) | English
+[![license](https://img.shields.io/github/license/z2care/ZipAltCmd)](https://raw.githubusercontent.com/z2care/ZipAltCmd/master/LICENSE)
 # ZipAltCmd
 This cmdline tool is to alter the order of zip internal files.
 
