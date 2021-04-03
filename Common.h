@@ -5,6 +5,7 @@ typedef unsigned char Byte;
 
 typedef unsigned short UInt16;
 typedef unsigned int UInt32;
+typedef unsigned long UInt64;
 
 #define GetUi16(p) (*(const UInt16 *)(const void *)(p))
 #define Get16(p) GetUi16(p)

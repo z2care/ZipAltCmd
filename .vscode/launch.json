@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-            "args": ["E:\\PracticeWork\\ZipModify\\test_aiqiyi.zip","E:\\PracticeWork\\ZipModify\\newtest.zip","E:\\PracticeWork\\ZipModify\\test.txt"],
+            "args": ["${fileDirname}\\test\\apk_signed.zip","${fileDirname}\\test\\output.zip","${fileDirname}\\test\\test_signed.txt"],
             "stopAtEntry": false,
             "cwd": "D:/MinGW/mingw64/bin",
             "environment": [],

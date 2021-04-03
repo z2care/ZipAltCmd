@@ -6,10 +6,7 @@ int readCentralDirectoryEndRecord(fstream& zipfile, vector<FileRecord>& centralF
     FileRecord efh;
     efh.signature = NSignature::kEcd;
     efh.offset = cur_offset;
-    zipfile.seekg(12, ios::cur);
-
-    zipfile.read((char *)&tmpBuf4, sizeof(tmpBuf4));
-    UInt32 cd_offset = Get32(tmpBuf4);
+    zipfile.seekg(16, ios::cur);
 
     zipfile.read((char *)&tmpBuf2, sizeof(tmpBuf2));
     UInt16 comment_len = Get16(tmpBuf2);
@@ -19,5 +16,8 @@ int readCentralDirectoryEndRecord(fstream& zipfile, vector<FileRecord>& centralF
     efh.total = 22 + comment_len;
     efh.taken = 0;
     centralFileHeaders.push_back(efh);
-    return cd_offset;
+    
+    cur_offset += efh.total;
+
+    return cur_offset;
 }

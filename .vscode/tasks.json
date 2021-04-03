@@ -7,9 +7,10 @@
             "args": [
                 "-g",
                 "${file}",
-                "E:\\PracticeWork\\ZipAltCmd\\CentralDirectory.cpp",
-                "E:\\PracticeWork\\ZipAltCmd\\LocalFileHeader.cpp",
-                "E:\\PracticeWork\\ZipAltCmd\\CentralDirectoryEnd.cpp",
+                "${fileDirname}\\CentralDirectory.cpp",
+                "${fileDirname}\\LocalFileHeader.cpp",
+                "${fileDirname}\\CentralDirectoryEnd.cpp",
+                "${fileDirname}\\ApkSigningBlock.cpp",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
                 "-static-libgcc",
