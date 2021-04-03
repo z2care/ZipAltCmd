@@ -50,23 +50,23 @@ int main(int argc, char **argv){
     Byte startBuf[4];//zip marker size is 4 byte
     int cur_pos = 0;
     int cd_offset = 0;
-    int sig_size = 0;
+    int sig_total_size = 0;
     int sig_offset = 0;
+    int print_count = 0;
     while(infile.peek() != EOF){
         infile.read((char*)startBuf, sizeof(startBuf));
         UInt32 value = Get32(startBuf);
         if(value == NSignature::kLocalFileHeader){
             cur_pos = readLocalFileHeaderRecord(infile, localFileHeaders, cur_pos);
         }else if(value == NSignature::kCentralFileHeader){
-            cd_offset = cur_pos;
             cur_pos = readCentralDirectoryRecord(infile, centralFileHeaders, cur_pos);
         }else if(value == NSignature::kEcd){
-            cur_pos = readCentralDirectoryEndRecord(infile, centralFileHeaders, cur_pos);
+            cur_pos = readCentralDirectoryEndRecord(infile, centralFileHeaders, cur_pos, &cd_offset);
         }else{
             if(!infile.eof()){
                 sig_offset = cur_pos;
                 cout<<"Apk signing block exist."<<endl;
-                cur_pos = readApkSigningBlock(infile, cur_pos, &sig_size);
+                cur_pos = readApkSigningBlock(infile, cur_pos, &sig_total_size);
             }else{
                 cout<<value<<endl;
                 cout<< "No zip marker found.skiip 1006."<<endl;
@@ -77,8 +77,8 @@ int main(int argc, char **argv){
 
     int exp_offset = 0;
     writeLocalFileHeaderRecord(infile, outfile, localFileHeaders, pickFiles);
-    if(sig_size != 0){
-        writeApkSigningBlock(infile, outfile, sig_offset, sig_size);
+    if(sig_total_size != 0){
+        writeApkSigningBlock(infile, outfile, sig_offset, sig_total_size);
     }
     writeCentralDirectoryRecord(infile, outfile, centralFileHeaders, localFileHeaders, pickFiles, cd_offset);
     infile.close();

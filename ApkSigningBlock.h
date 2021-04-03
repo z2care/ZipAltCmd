@@ -6,7 +6,7 @@
 #include "Common.h"
 
 using namespace std;
-int readApkSigningBlock(fstream& infile, int sig_offset, int* sig_size);
+int readApkSigningBlock(fstream& infile, int sig_offset, int* sig_total_size);
 void writeApkSigningBlock(fstream& infile, fstream& outfile, int sig_offset, int sig_size);
 
 #endif

@@ -9,7 +9,7 @@
 
 using namespace std;
 
-int readCentralDirectoryEndRecord(fstream& zipfile, vector<FileRecord>& centralFileHeaders, int cur_offset);
+int readCentralDirectoryEndRecord(fstream& zipfile, vector<FileRecord>& centralFileHeaders, int cur_offset, int* cd_offset);
 
 #endif
 
