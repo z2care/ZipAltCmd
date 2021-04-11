@@ -10,6 +10,8 @@
 using namespace std;
 
 int readCentralDirectoryEndRecord(fstream& zipfile, vector<FileRecord>& centralFileHeaders, int cur_offset, int* cd_offset);
+int readZip64CentralDirectoryEndRecord();
+int readZip64CentralDirectoryEndLocator();
 
 #endif
 

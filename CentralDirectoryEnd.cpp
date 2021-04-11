@@ -24,3 +24,11 @@ int readCentralDirectoryEndRecord(fstream& zipfile, vector<FileRecord>& centralF
 
     return cur_offset;
 }
+
+int readZip64CentralDirectoryEndRecord(){
+    return 0;
+}
+
+int readZip64CentralDirectoryEndLocator(){
+    return 0;
+}
